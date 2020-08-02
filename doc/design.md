@@ -63,5 +63,8 @@ Original power @ 5V: 0.07A.
    * With radio: 160-260mA
    * Without radio: 3-20mA
  * [ESP32: Tips to increase battery life](https://www.savjee.be/2019/12/esp32-tips-to-increase-battery-life/)
-
+ * [Save power by (reliably) switching the ESP WiFi on and off](https://esp8266hints.wordpress.com/2017/06/29/save-power-by-reliably-switching-the-esp-wifi-on-and-off/)
+ * [ESP32 low power](https://community.hiveeyes.org/t/low-power-esp32-hardware-and-software/538/2)
+ * [ESP + BME280 low power](https://github.com/G6EJD/ESP32-Deep-Sleep-Ultra-Low-Power-Trial/blob/master/ESP32_Thingspeak_Deep_Sleep_BME280.ino)
+ * [Tech Note 062 - WEMOS Lolin32 (surprisingly low power demands when powered by 3v3)](https://www.youtube.com/watch?v=k_7eZ5ZpSMY)
 

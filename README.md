@@ -72,3 +72,11 @@ yet.
  * MQTT reporting to server is currently disabled in the firmware as I do not need it. Refer to 
    Kevin's original code if you want to restore it.
 
+## Changelog
+
+ * 0.6
+  * In wifi screen, long press to re-setup Wifi.
+  * Reduce clock frequency to 80Mhz to save power.
+  * Only turn on Wifi at NTP time to save power. Power is now at around 20-30mA @ 5V.
+ * 0.5
+  * Initial version.
