@@ -4,7 +4,12 @@ Feng Zhou, July-August, 2020
 
 # Changes
 
- ...
+2020-8-2 Optimizaing power
+
+Original power @ 5V: 0.07A. 
+
+ * Change clock to 80Mhz: `setCpuFrequencyMhz(80);`:
+   0.05A 
 
 # Future work
 
@@ -57,5 +62,6 @@ Feng Zhou, July-August, 2020
  * [ESP32 Power Modes](https://lastminuteengineers.com/esp32-sleep-modes-power-consumption/)
    * With radio: 160-260mA
    * Without radio: 3-20mA
+ * [ESP32: Tips to increase battery life](https://www.savjee.be/2019/12/esp32-tips-to-increase-battery-life/)
 
 

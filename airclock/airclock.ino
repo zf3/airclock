@@ -119,6 +119,8 @@ void rootPage() {
 
 void setup(void)
 {
+  setCpuFrequencyMhz(80);
+
   Serial.begin(115200);
   Serial.println("Airmonitor started.\n");
 //  broker.setServer(mqtt_server, 1883);
@@ -204,6 +206,11 @@ void setup(void)
 
   activeMillis = millis();
 
+  // Set up light sleep for saving power
+  esp_sleep_enable_timer_wakeup(100000);
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_12, 0);    // Press button to wake. 0 means wake up on high to low
+  
+
   /* zf: No network for now
   connectToNetwork();
   */
@@ -233,7 +240,6 @@ void clockScreen() {
 void airQualityScreen() {
   // iaqSensor.run() will return true once new data becomes available
   if (iaqSensor.run()) {
-    lcd.clear();
     displayIAQ(String(iaqSensor.staticIaq));
     displayTemp(String(iaqSensor.temperature));
     displayHumidity(String(iaqSensor.humidity));
@@ -265,11 +271,11 @@ void wifiScreen() {
     } else {
       Serial.println("Cannot start AutoConnect Server");
     }
+    lcd.clear();
   } else {
     unsigned long now = millis();
     if (now - wifiStatusMillis > 1000) {
       wifiStatusMillis = now;
-      lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("Pls browse:");
       lcd.setCursor(0, 1);
@@ -325,12 +331,13 @@ void loop(void)
     Serial.printf("NTP update: %ul\n", ntpEpoch);
     ntpMillis = now;
   }
-    
+
+  if (screen != 2) {
+    delay(100);
+  }
   /*
   if (screen != 2) {
     // Go to sleep to save power, wake up 4 times a second
-    esp_sleep_enable_timer_wakeup(250000);
-    esp_sleep_enable_ext0_wakeup(GPIO_NUM_12, 0);    // Press button to wake. 0 means wake up on high to low
     int ret = esp_light_sleep_start();  
     //  Serial.printf("light_sleep: %d\n", ret);
   }
