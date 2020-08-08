@@ -3,25 +3,32 @@
 // Based on Arduairs
 // Github: https://github.com/greenpig/airclock
 
+// Configurarions
+
+// Need to enable this to enable air quality monitoring
+#define ENABLE_BME680
+
+// End configuration
+
+
 #include "bsec.h"
 #include <LiquidCrystal_I2C.h>
 #include <WiFi.h>
 #include <WifiUdp.h>
 #include <NTPClient.h>
 #include <EEPROM.h>
-#include <BigNumbers_I2C.h>
 #include <PubSubClient.h>
 #include <EasyButton.h>
 #include <time.h>
 #include <WebServer.h>
 #include <AutoConnect.h>
+//#include <BigNumbers_I2C.h>
 
 #include "util.h"
+#include "HugeNumbers_I2C.h"
 
 #define VERSION "v0.6"
 
-// Need to enable this to enable air quality monitoring
-#define ENABLE_BME680
 
 // Controls which pins are the I2C ones.
 #define PIN_I2C_SDA 21
@@ -66,7 +73,8 @@ const uint8_t LCD_ADDR = 0x27;
 
 // 20 characters across, 4 lines deep
 LiquidCrystal_I2C lcd(LCD_ADDR, 20, 4);
-BigNumbers_I2C bigNum(&lcd);
+//BigNumbers_I2C bigNum(&lcd);
+HugeNumbers_I2C hugeNum(&lcd);
 
 // Current active screen
 int screen = 0;       // Current screen
@@ -106,7 +114,7 @@ void onButtonPressed() {
 #endif
     lcd.clear();
     if (screen == 0) {
-      bigNum.begin();
+      hugeNum.begin();
     } else if (screen == 1) {
       // I wanted some iconography, so this function creates some icons in the LCDs memory. They were created using Maxpromers LCD Character Creator
       createLCDSymbols();
@@ -207,7 +215,8 @@ void setup(void)
   lcd.begin();
   lcd.backlight();
 
-  bigNum.begin();
+//  bigNum.begin();
+  hugeNum.begin();
 
   // Set up button
   pinMode(BUTTON_PIN, INPUT_PULLUP);
@@ -283,12 +292,17 @@ void clockScreen() {
   epochToDateTime(nowEpoch, timezone, &dt);
 
   // print time
-  bigNum.displayLargeInt(dt.tm_hour, 0, 0, 2, true);
-  bigNum.displayLargeInt(dt.tm_min, 7, 0, 2, true);
-  bigNum.displayLargeInt(dt.tm_sec, 14, 0, 2, true);
-  lcd.setCursor(6, 1);
-  lcd.print(":");
-  lcd.setCursor(13, 1);
+//  bigNum.displayLargeInt(dt.tm_hour, 0, 0, 2, true);
+//  bigNum.displayLargeInt(dt.tm_min, 7, 0, 2, true);
+//  bigNum.displayLargeInt(dt.tm_sec, 14, 0, 2, true);
+//  lcd.setCursor(6, 1);
+//  lcd.print(":");
+//  lcd.setCursor(13, 1);
+//  lcd.print(":");
+  hugeNum.displayHugeInt(dt.tm_hour, 1, 0, 2, true);
+  hugeNum.displayHugeInt(dt.tm_min, 10, 0, 2, true);
+//  hugeNum.displayHugeInt(dt.tm_sec, 10, 0, 2, true);
+  lcd.setCursor(9, 1);
   lcd.print(":");
 
   // print date at bottom

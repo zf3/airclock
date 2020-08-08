@@ -4,6 +4,10 @@ Feng Zhou, July-August, 2020
 
 # Changes
 
+2020-8-8
+ 
+ * Created HugeNumbers_I2C.cpp to display `4*4` larger numbers.
+
 2020-8-2 Optimizaing power
 
 Original power @ 5V: 0.07A. 
@@ -59,10 +63,12 @@ Original power @ 5V: 0.07A.
 
 ## Power Saving
 
+ * [Max.K's low power handheld computer](https://hackaday.io/project/169103-low-power-esp32-handheld)
  * [ESP32 Power Modes](https://lastminuteengineers.com/esp32-sleep-modes-power-consumption/)
    * With radio: 160-260mA
    * Without radio: 3-20mA
  * [ESP32: Tips to increase battery life](https://www.savjee.be/2019/12/esp32-tips-to-increase-battery-life/)
+ * [ESP32 Deep Sleep Tutorial](https://www.hackster.io/nickthegreek82/esp32-deep-sleep-tutorial-4398a7)
  * [Save power by (reliably) switching the ESP WiFi on and off](https://esp8266hints.wordpress.com/2017/06/29/save-power-by-reliably-switching-the-esp-wifi-on-and-off/)
  * [ESP32 low power](https://community.hiveeyes.org/t/low-power-esp32-hardware-and-software/538/2)
  * [ESP + BME280 low power](https://github.com/G6EJD/ESP32-Deep-Sleep-Ultra-Low-Power-Trial/blob/master/ESP32_Thingspeak_Deep_Sleep_BME280.ino)
